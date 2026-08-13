@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Garrafa de Vidro moderna - Page Inicial</title>
+    <meta
+      name="description"
+      content="Garrafas de Vidro De Boa Qualidade e Acessivel — O melhor que uma pessoa deve receber."
+    />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="#" class="logo" aria-label="Página inicial">MinhaMarca</a>
+
+        <!-- Navegação principal -->
+        <nav id="main-nav" class="main-nav" aria-label="Navegação principal">
+          <ul>
+            <li><a href="#features">Recursos</a></li>
+            <li><a href="#pricing">Preços</a></li>
+            <li><a href="#testimonials">Depoimentos</a></li>
+            <li><a href="#contact" class="btn btn-ghost">Contato</a></li>
+          </ul>
+        </nav>
+
+        <!-- Botão para menu mobile (controlado por JS) -->
+        <button
+          class="nav-toggle"
+          aria-controls="main-nav"
+          aria-expanded="false"
+          aria-label="Abrir menu"
+        >
+          <span class="hamburger" aria-hidden="true">☰</span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero -->
+      <section id="hero" class="hero">
+        <div class="container hero-inner">
+          <h1 class="hero-title">Construa experiências digitais incríveis</h1>
+          <p class="hero-sub">
+            A ferramenta X ajuda sua equipe a entregar produtos melhores, mais
+            rápido e com menos esforço.
+          </p>
+          <div class="hero-ctas">
+            <a href="#signup" class="btn btn-primary">Começar grátis</a>
+            <a href="#features" class="btn btn-outline">Ver recursos</a>
+          </div>
+          <!-- Visual/placeholder para imagem ou ilustração -->
+          <div class="hero-visual" aria-hidden="true">
+            <!-- pode trocar por imagem/illustration -->
+            <svg
+              width="560"
+              height="320"
+              viewBox="0 0 560 320"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              role="img"
+            >
+              <rect width="560" height="320" rx="12" fill="#EFEFF4" />
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      <!-- Recursos -->
+      <section id="features" class="features container">
+        <h2 class="section-title">Recursos principais</h2>
+        <div class="features-grid">
+          <article class="feature">
+            <div class="feature-icon" aria-hidden="true">
+              <!-- ícone simples -->
+              <svg width="40" height="40" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" fill="#E5E7EB" />
+              </svg>
+            </div>
+            <h3>Entrega rápida</h3>
+            <p>
+              Integre com seu fluxo e reduza o tempo de entrega com automações
+              inteligentes.
+            </p>
+          </article>
+
+          <article class="feature">
+            <div class="feature-icon" aria-hidden="true">
+              <svg width="40" height="40" viewBox="0 0 24 24">
+                <rect x="3" y="3" width="18" height="18" fill="#E5E7EB" />
+              </svg>
+            </div>
+            <h3>Design responsivo</h3>
+            <p>
+              Componentes prontos para qualquer tela e acessibilidade desde o
+              início.
+            </p>
+          </article>
+
+          <article class="feature">
+            <div class="feature-icon" aria-hidden="true">
+              <svg width="40" height="40" viewBox="0 0 24 24">
+                <path d="M3 12h18" stroke="#9CA3AF" stroke-width="2" />
+              </svg>
+            </div>
+            <h3>Escalável</h3>
+            <p>
+              Ferramentas e integrações pensadas para crescer junto com sua
+              equipe.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Pricing (exemplo) -->
+      <section id="pricing" class="pricing container">
+        <h2 class="section-title">Planos</h2>
+        <div class="pricing-cards">
+          <div class="card">
+            <h3>Starter</h3>
+            <p class="price">Grátis</p>
+            <ul>
+              <li>Até 3 projetos</li>
+              <li>Funcionalidades básicas</li>
+            </ul>
+            <a href="#signup" class="btn btn-outline">Começar</a>
+          </div>
+          <div class="card featured">
+            <h3>Pro</h3>
+            <p class="price">R$49/mês</p>
+            <ul>
+              <li>Projetos ilimitados</li>
+              <li>Equipe e permissões</li>
+            </ul>
+            <a href="#signup" class="btn btn-primary">Assinar</a>
+          </div>
+          <div class="card">
+            <h3>Enterprise</h3>
+            <p class="price">Sob consulta</p>
+            <ul>
+              <li>Suporte dedicado</li>
+              <li>SLAs e integrações</li>
+            </ul>
+            <a href="#contact" class="btn btn-ghost">Falar com vendas</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Depoimentos -->
+      <section id="testimonials" class="testimonials container">
+        <h2 class="section-title">O que dizem nossos clientes</h2>
+        <div class="testimonials-list">
+          <blockquote>
+            <p>
+              “A ferramenta mudou nosso ritmo de desenvolvimento — entregamos 2x
+              mais.”
+            </p>
+            <footer>— Ana, CEO da Startup X</footer>
+          </blockquote>
+        </div>
+      </section>
+
+      <!-- CTA final -->
+      <section id="cta" class="cta container">
+        <h2>Pronto para começar?</h2>
+        <p>Teste grátis por 14 dias. Sem cartão de crédito.</p>
+        <a href="#signup" class="btn btn-primary large">Começar meu teste</a>
+      </section>
+
+      <!-- Contato / formulário simples (placeholder) -->
+      <section id="contact" class="contact container">
+        <h2 class="section-title">Fale conosco</h2>
+        <form id="contact-form" action="#" method="post" novalidate>
+          <div class="form-row">
+            <input type="text" name="name" placeholder="Seu nome" required />
+            <input
+              type="email"
+              name="email"
+              placeholder="Seu e‑mail"
+              required
+            />
+          </div>
+          <textarea
+            name="message"
+            rows="4"
+            placeholder="Como podemos ajudar?"
+            required
+          ></textarea>
+          <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>
+          &copy; <span id="year"></span> MinhaMarca. Todos os direitos
+          reservados.
+        </p>
+        <nav aria-label="Rodapé">
+          <ul>
+            <li><a href="#">Termos</a></li>
+            <li><a href="#">Privacidade</a></li>
+          </ul>
+        </nav>
+      </div>
+    </footer>
+
+    <!-- JS externo (criar script.js) -->
+    <script src="script.js" defer></script>
+  </body>
+</html>
