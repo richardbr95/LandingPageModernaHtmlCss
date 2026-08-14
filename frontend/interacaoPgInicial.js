@@ -17,14 +17,49 @@ botao.addEventListener("click", function () {
   }
 });
 
-form.addEventListener("submit", function (event) {
+form.addEventListener("submit", async function (event) {
   event.preventDefault();
 
   const name = form.querySelector('[name="name"]').value;
   const email = form.querySelector('[name="email"]').value;
   const message = form.querySelector('[name="message"]').value;
 
-  console.log("Nome:", name);
-  console.log("E-mail:", email);
-  console.log("Mensagem:", message);
+  const data = {
+    name: name,
+    email: email,
+    message: message,
+  };
+
+  const response = await fetch("http://localhost:3000/api/contact", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+
+  const result = await response.json();
+
+  console.log(result);
 });
+
+async function buscarContatos() {
+  const response = await fetch("http://localhost:3000/api/contact");
+  const contatos = await response.json();
+
+  const lista = document.querySelector("#contacts-list");
+
+  contatos.forEach(function (contato) {
+    const item = document.createElement("div");
+
+    item.innerHTML = `
+    <h3>${contato.name}<h3>
+    <p>${contato.email}<p>
+    <p>${contato.message}<p>
+    `;
+
+    lista.appendChild(item);
+  });
+}
+
+buscarContatos();
