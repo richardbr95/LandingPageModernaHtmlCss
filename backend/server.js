@@ -1,38 +1,22 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
-const sqlite3 = require("sqlite3").verbose();
+const db = require("./database");
+const bcrypt = require("bcrypt");
+const {
+  authenticateToken,
+  authorizeRole,
+} = require("./middleware/authmiddleware");
+const jwt = require("jsonwebtoken");
+const jwtSecret = "my-secret-key";
+const userRoutes = require("./routes/userRoutes");
 
 const PORT = 3000;
 
 app.use(cors());
 app.use(express.json());
 
-const db = new sqlite3.Database("./database.db", function (error) {
-  if (error) {
-    console.error("Erro ao conectar ao banco de dados:", error.message);
-  } else {
-    console.log("Banco de dados conectado!.");
-  }
-});
-
-db.run(
-  `
-  CREATE TABLE IF NOT EXISTS contacts (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT NOT NULL,
-    email TEXT NOT NULL,
-    message TEXT NOT NULL,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP)`,
-
-  function (error) {
-    if (error) {
-      console.error("Erro ao criar a tabela:", error.message);
-    } else {
-      console.log("Tabela contacts pronta!");
-    }
-  },
-);
+app.use("/api", userRoutes);
 
 app.post("/api/contact", function (req, res) {
   const { name, email, message } = req.body;
@@ -60,16 +44,21 @@ app.post("/api/contact", function (req, res) {
   );
 });
 
-app.get("/api/contact", function (req, res) {
-  db.all("SELECT * FROM contacts", function (error, rows) {
-    if (error) {
-      console.error("Erro ao buscar contatos:", error.message);
+app.get(
+  "/api/contact",
+  authenticateToken,
+  authorizeRole("admin"),
+  function (req, res) {
+    db.all("SELECT * FROM contacts", function (error, rows) {
+      if (error) {
+        console.error("Erro ao buscar contatos:", error.message);
 
-      return res.status(500).json({ mensagem: "Erro ao buscar contatos." });
-    }
-    res.json(rows);
-  });
-});
+        return res.status(500).json({ mensagem: "Erro ao buscar contatos." });
+      }
+      res.json(rows);
+    });
+  },
+);
 
 app.listen(PORT, function () {
   console.log(`Servidor rodando na porta ${PORT}`);

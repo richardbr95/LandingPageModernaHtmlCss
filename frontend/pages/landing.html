@@ -15,12 +15,15 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../css/landing.css" />
+    <link rel="stylesheet" href="../css/global.css" />
   </head>
   <body>
     <header class="site-header">
       <div class="container header-inner">
-        <a href="#" class="logo" aria-label="Página inicial">MinhaMarca</a>
+        <a href="../pages/landing.html" class="logo" aria-label="Página inicial"
+          >MinhaMarca</a
+        >
 
         <!-- Navegação principal -->
         <nav id="main-nav" class="main-nav" aria-label="Navegação principal">
@@ -28,6 +31,10 @@
             <li><a href="#features">Recursos</a></li>
             <li><a href="#pricing">Preços</a></li>
             <li><a href="#testimonials">Depoimentos</a></li>
+            <li id="login-nav-item"><a href="login.html">Login</a></li>
+            <li id="dashboard-nav-item" hidden>
+              <a href="admin.html">Painel</a>
+            </li>
             <li><a href="#contact" class="btn btn-ghost">Contato</a></li>
           </ul>
         </nav>
@@ -198,13 +205,7 @@
         </form>
       </section>
 
-      <section id="contacts" class="contacts container">
-        <h2 class="section-title">Contatos recebidos</h2>
-
-        <div id="contacts-list"></div>
-      </section>
-
-      <script src="interacaoPgInicial.js"></script>
+      <script src="../js/main.js"></script>
     </main>
 
     <footer class="site-footer">
@@ -223,4 +224,3 @@
     </footer>
   </body>
 </html>
->
