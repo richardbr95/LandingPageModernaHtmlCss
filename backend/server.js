@@ -53,9 +53,37 @@ app.get(
       if (error) {
         console.error("Erro ao buscar contatos:", error.message);
 
-        return res.status(500).json({ mensagem: "Erro ao buscar contatos." });
+        return res.status(500).json({ mensagem: "Fetch failed." });
       }
       res.json(rows);
+    });
+  },
+);
+
+app.delete(
+  "/api/contact/:id",
+  authenticateToken,
+  authorizeRole("admin"),
+  function (req, res) {
+    const idContact = req.params.id;
+
+    db.run("DELETE FROM contacts WHERE id = ?", [idContact], function (error) {
+      if (error) {
+        console.error("Error deleting contact.", error.message);
+
+        return res.status(500).json({ message: "Delete failed" });
+      }
+
+      if (this.changes === 0) {
+        return res.status(404).json({
+          message: "Contact not found",
+        });
+      }
+
+      console.log("Delete completed.");
+      res.json({
+        message: "Delete completed",
+      });
     });
   },
 );

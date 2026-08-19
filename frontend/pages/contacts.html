@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Admin Dashboard</title>
+    <title>Contatos</title>
 
     <link rel="stylesheet" href="../css/global.css" />
     <link rel="stylesheet" href="../css/admin.css" />
@@ -53,30 +53,30 @@
         <div class="admin-header">
           <div>
             <p class="admin-eyebrow">PAINEL ADMINISTRATIVO</p>
-            <h1 class="admin-title">Dashboard</h1>
-            <p class="admin-subtitle">
-              Gerencie e acompanhe os contatos recebidos.
-            </p>
+            <h1 class="admin-title">Contatos</h1>
+            <p class="admin-subtitle">Lista completa de contatos recebidos.</p>
           </div>
         </div>
 
         <section class="dashboard container">
-          <div class="dashboard-welcome">
-            <h2>Bem-vindo, <span id="user-name"></span>!</h2>
-            <p>Confira um resumo das informações do sistema.</p>
-          </div>
-
-          <div class="dashboard-cards">
-            <a href="contacts.html" class="dashboard-card">
-              <h3>Contatos</h3>
-              <strong id="contacts-count">0</strong>
-              <p>contatos recebidos</p>
-            </a>
+          <div class="table-wrapper">
+            <table class="contacts-table">
+              <thead>
+                <tr>
+                  <th>Nome</th>
+                  <th>E-mail</th>
+                  <th>Mensagem</th>
+                </tr>
+              </thead>
+              <tbody id="contacts-table-body">
+                <!-- linhas preenchidas via JS -->
+              </tbody>
+            </table>
           </div>
         </section>
       </div>
     </main>
     <script src="../js/auth.js"></script>
-    <script src="../js/admin.js"></script>
+    <script src="../js/contacts.js"></script>
   </body>
 </html>
