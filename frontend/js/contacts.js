@@ -6,7 +6,7 @@ if (!currentUser) {
 
 async function loadContacts() {
   const token = getAuthToken();
-  const response = await fetch("http://localhost:3000/api/contact", {
+  const response = await fetch(`${API_URL}/api/contact`, {
     method: "GET",
     headers: {
       Authorization: `Bearer ${token}`,
@@ -45,15 +45,12 @@ function renderContacts(contacts) {
       const token = getAuthToken();
       const contactId = contact.id;
       try {
-        const response = await fetch(
-          `http://localhost:3000/api/contact/${contactId}`,
-          {
-            method: "DELETE",
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
+        const response = await fetch(`${API_URL}/api/contact/${contactId}`, {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
           },
-        );
+        });
         const data = await response.json();
         if (!response.ok) {
           console.error(data.message);
@@ -68,6 +65,18 @@ function renderContacts(contacts) {
 }
 
 loadContacts();
+
+const searchInput = document.querySelector("#search-input");
+searchInput.addEventListener("input", function () {
+  const term = searchInput.value.toLocaleLowerCase();
+  const rows = document.querySelectorAll("#contacts-table-body tr");
+  rows.forEach(function (row) {
+    const name = row
+      .querySelector("td:first-child")
+      .textContent.toLocaleLowerCase();
+    row.style.display = name.includes(term) ? "" : "none";
+  });
+});
 
 const logoutButton = document.querySelector("#logout-button");
 

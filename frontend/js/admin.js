@@ -11,7 +11,7 @@ if (userName) {
 }
 async function loadContacts() {
   const token = getAuthToken();
-  const response = await fetch("http://localhost:3000/api/contact", {
+  const response = await fetch(`${API_URL}/api/contact`, {
     method: "GET",
     headers: {
       Authorization: `Bearer ${token}`,
@@ -32,6 +32,26 @@ async function loadContacts() {
   }
 }
 loadContacts();
+
+async function loadUsers() {
+  const token = getAuthToken();
+
+  const response = await fetch(`${API_URL}/api/users`, {
+    method: "GET",
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  const result = await response.json();
+
+  if (!response.ok) {
+    console.error("Error loading users:", result);
+    return;
+  }
+  const usersCount = document.querySelector("#users-count");
+  if (usersCount) {
+    usersCount.textContent = result.length;
+  }
+}
+loadUsers();
 
 const logoutButton = document.querySelector("#logout-button");
 

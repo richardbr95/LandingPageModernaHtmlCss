@@ -2,10 +2,32 @@ const express = require("express");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const db = require("../database");
+const {
+  authenticateToken,
+  authorizeRole,
+} = require("../middleware/authmiddleware");
 
 const router = express.Router();
 
-const jwtSecret = "my-secret-key";
+const jwtSecret = process.env.JWT_SECRET;
+
+router.get(
+  "/users",
+  authenticateToken,
+  authorizeRole("admin"),
+  function (req, res) {
+    db.all(
+      "SELECT id, name, email, role FROM users",
+      [],
+      function (error, rows) {
+        if (error) {
+          console.error("Error fetching users:", error.message);
+        }
+        res.json(rows);
+      },
+    );
+  },
+);
 
 router.post("/users", async function (req, res) {
   console.log("User data received:", req.body);
@@ -30,6 +52,27 @@ router.post("/users", async function (req, res) {
     },
   );
 });
+
+router.delete(
+  "/users/:id",
+  authenticateToken,
+  authorizeRole("admin"),
+  async function (req, res) {
+    const userId = req.params.id;
+    if (parseInt(userId) === req.user.id) {
+      return res
+        .status(403)
+        .json({ message: "You cannot delete your own account" });
+    }
+    db.run("DELETE FROM users WHERE id = ?", [userId], function (error) {
+      if (error) {
+        console.error("Error deleting user:", error.message);
+        return res.status(500).json({ message: "Internal server error." });
+      }
+      res.json({ message: "User deleted successfully" });
+    });
+  },
+);
 
 router.post("/login", async function (req, res) {
   const { email, password } = req.body;

@@ -32,6 +32,31 @@
             </li>
 
             <li>
+              <a href="users.html">Usuários</a>
+            </li>
+
+            <div class="theme-picker">
+              <button
+                class="theme-picker-btn"
+                id="theme-picker-btn"
+                aria-label="Trocar tema"
+              >
+                🎨
+              </button>
+              <div class="theme-popup" id="theme-popup">
+                <button class="theme-option" onclick="applyTheme('blue')">
+                  🔵 AzulV
+                </button>
+                <button class="theme-option" onclick="applyTheme('green')">
+                  🟢 VerdeV
+                </button>
+                <button class="theme-option" onclick="applyTheme('red')">
+                  🔴 PretoVR
+                </button>
+              </div>
+            </div>
+
+            <li>
               <button id="logout-button" class="btn btn-ghost">Sair</button>
             </li>
           </ul>
@@ -72,11 +97,19 @@
               <strong id="contacts-count">0</strong>
               <p>contatos recebidos</p>
             </a>
+
+            <a href="users.html" class="dashboard-card">
+              <h3>Usuários</h3>
+              <strong id="users-count">0</strong>
+              <p>Usuários recebidos</p>
+            </a>
           </div>
         </section>
       </div>
+      <script src="../js/config.js"></script>
+      <script src="../js/theme.js"></script>
+      <script src="../js/auth.js"></script>
+      <script src="../js/admin.js"></script>
     </main>
-    <script src="../js/auth.js"></script>
-    <script src="../js/admin.js"></script>
   </body>
 </html>
